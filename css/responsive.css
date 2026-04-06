@@ -1,0 +1,69 @@
+/* ═══════════════════════════════════════════════════════════
+   Responsive — Premium Breakpoints
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 var(--space-lg);
+    }
+
+    section {
+        padding: var(--space-4xl) 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    section {
+        padding: var(--space-3xl) 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-desc {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+
+    section {
+        padding: var(--space-2xl) 0;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .hero-badge {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+    }
+}

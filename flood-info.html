@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Live flood intelligence dashboard — interactive flood risk map, weather monitoring, analytics, and river basin data for all Indian states and districts.">
+    <meta name="keywords" content="flood risk map, weather data, rainfall India, flood analytics, river monitoring">
+    <meta name="author" content="FloodGuard India">
+    <title>Flood Intelligence Hub — FloodGuard India</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/flood-info.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/charts.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Page Hero — Compact with gradient mesh */
+        .page-hero {
+            padding: calc(var(--navbar-height) + var(--space-3xl)) 0 var(--space-3xl);
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-hero);
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg-primary), transparent);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .page-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-blue);
+            font-size: 0.82rem;
+            font-weight: 700;
+            font-family: var(--font-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-lg);
+        }
+
+        .page-hero .hero-badge i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ═══════════════════ SCROLL PROGRESS ═══════════════════ -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <span class="logo-text">Flood<span class="logo-accent">Guard</span> India</span>
+            </a>
+
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="flood-info.html" class="nav-link active">Flood Intelligence</a></li>
+                <li><a href="historical.html" class="nav-link">Historical Data</a></li>
+                <li><a href="safety.html" class="nav-link">Safety & Emergency</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon-dark"></i>
+                    <i data-lucide="sun" class="theme-icon-light"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ PAGE HERO ═══════════════════ -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <div class="hero-badge fade-in">
+                <i data-lucide="activity"></i>
+                <span>Live Dashboard</span>
+            </div>
+            <h1 class="fade-in">Flood <span class="gradient-text">Intelligence Hub</span></h1>
+            <p class="fade-in">Live weather data, interactive flood maps, and comprehensive analytics at your
+                fingertips.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FLOOD INFORMATION SECTION ═══════════════════ -->
+    <section class="flood-info-section" id="flood-info">
+        <div class="container">
+
+            <!-- Location Search -->
+            <div class="location-panel glass-card fade-in">
+                <div class="location-header">
+                    <i data-lucide="search"></i>
+                    <h3>Location & Weather Analysis</h3>
+                </div>
+                <div class="location-search-row">
+                    <div class="search-input-group">
+                        <input type="text" id="locationInput" placeholder="Enter city, district, or state..."
+                            autocomplete="off">
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <button class="btn btn-primary" id="searchLocationBtn">
+                        <i data-lucide="search"></i>
+                        <span>Search</span>
+                    </button>
+                    <button class="btn btn-secondary" id="locateMeBtn">
+                        <i data-lucide="crosshair"></i>
+                        <span>Locate Me</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Weather Dashboard -->
+            <div class="weather-dashboard fade-in" id="weatherDashboard">
+                <div class="weather-location-bar glass-card">
+                    <div class="weather-location-info">
+                        <i data-lucide="map-pin"></i>
+                        <span id="weatherLocationName">Select a location to view weather data</span>
+                    </div>
+                    <span class="weather-timestamp" id="weatherTimestamp"></span>
+                </div>
+
+                <div class="weather-grid">
+                    <div class="weather-card glass-card card-temp">
+                        <div class="weather-card-icon temp-icon">
+                            <i data-lucide="thermometer"></i>
+                        </div>
+                        <div class="weather-card-data">
+                            <span class="weather-value" id="wTemp">--</span>
+                            <span class="weather-unit">°C</span>
+                        </div>
+                        <span class="weather-label">Temperature</span>
+                    </div>
+                    <div class="weather-card glass-card card-rain">
+                        <div class="weather-card-icon rain-icon">
+                            <i data-lucide="cloud-rain"></i>
+                        </div>
+                        <div class="weather-card-data">
+                            <span class="weather-value" id="wRain">--</span>
+                            <span class="weather-unit">mm</span>
+                        </div>
+                        <span class="weather-label">Rainfall</span>
+                    </div>
+                    <div class="weather-card glass-card card-precip">
+                        <div class="weather-card-icon precip-icon">
+                            <i data-lucide="droplets"></i>
+                        </div>
+                        <div class="weather-card-data">
+                            <span class="weather-value" id="wPrecip">--</span>
+                            <span class="weather-unit">%</span>
+                        </div>
+                        <span class="weather-label">Precipitation Prob.</span>
+                    </div>
+                    <div class="weather-card glass-card card-wind">
+                        <div class="weather-card-icon wind-icon">
+                            <i data-lucide="wind"></i>
+                        </div>
+                        <div class="weather-card-data">
+                            <span class="weather-value" id="wWind">--</span>
+                            <span class="weather-unit">km/h</span>
+                        </div>
+                        <span class="weather-label">Wind Speed</span>
+                    </div>
+                    <div class="weather-card glass-card card-humid">
+                        <div class="weather-card-icon humid-icon">
+                            <i data-lucide="gauge"></i>
+                        </div>
+                        <div class="weather-card-data">
+                            <span class="weather-value" id="wHumidity">--</span>
+                            <span class="weather-unit">%</span>
+                        </div>
+                        <span class="weather-label">Humidity</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Map -->
+            <div class="map-section fade-in" id="map-section">
+                <div class="map-header">
+                    <div class="map-header-left">
+                        <h3><i data-lucide="map"></i> Interactive India Flood Risk Map</h3>
+                        <div class="map-status-badge">
+                            <span class="pulse-dot"></span>
+                            <span id="mapLastUpdated">Initializing Live Sync...</span>
+                        </div>
+                        <button class="btn-back-india" id="backToIndia" style="display:none;">
+                            <i data-lucide="arrow-left"></i>
+                            <span>Back to India</span>
+                        </button>
+                    </div>
+                    <div class="map-header-right">
+                        <span class="map-view-label" id="mapViewLabel">All States</span>
+                        <div class="map-legend">
+                            <div class="legend-item"><span class="legend-color" style="background:#22c55e"></span>Low
+                            </div>
+                            <div class="legend-item"><span class="legend-color"
+                                    style="background:#eab308"></span>Moderate</div>
+                            <div class="legend-item"><span class="legend-color" style="background:#f97316"></span>High
+                            </div>
+                            <div class="legend-item"><span class="legend-color" style="background:#ef4444"></span>Very
+                                High</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-grid-layout">
+                    <div class="map-container glass-card">
+                        <div id="floodMap" class="flood-map"></div>
+                    </div>
+                    <div class="map-stats-panel glass-card" id="mapStatsPanel">
+                        <!-- Empty state -->
+                        <div class="stats-panel-empty" id="statsPanelEmpty">
+                            <div class="stats-empty-icon">
+                                <i data-lucide="mouse-pointer-click"></i>
+                            </div>
+                            <h4>Select a Region</h4>
+                            <p>Click on any state to explore its flood risk data and drill down into district-level
+                                statistics.</p>
+                        </div>
+                        <!-- Populated state (hidden by default) -->
+                        <div class="stats-panel-content" id="statsPanelContent" style="display:none;">
+                            <div class="stats-panel-header">
+                                <div class="stats-region-name">
+                                    <h4 id="statsRegionName">—</h4>
+                                    <span class="risk-badge" id="statsRiskBadge">—</span>
+                                </div>
+                                <span class="stats-region-type" id="statsRegionType">State</span>
+                            </div>
+                            <div class="stats-panel-grid" id="statsPanelGrid"></div>
+                            <div class="stats-panel-extra" id="statsPanelExtra"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <!-- Charts Section -->
+            <div class="charts-section" id="charts-section">
+                <div class="section-header fade-in">
+                    <div class="section-divider"></div>
+                    <h2 class="section-title">National Flood <span class="gradient-text">Analytics Hub</span></h2>
+                    <p class="section-subtitle">Real-time visualization of flood trends, impact metrics, and historical causal analysis across India.</p>
+                </div>
+
+            <!-- Dashboard Stats -->
+            <div class="stats-overview fade-in">
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="activity"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-value" id="statEvents">450+</span>
+                        <span class="stat-label">Major Disasters (1953+)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="users"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-value" id="statAffected">2.1B+</span>
+                        <span class="stat-label">Impacted (Cumulative)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="heart"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-value" id="statLives">122K+</span>
+                        <span class="stat-label">Lives Lost (Recorded)</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i data-lucide="home"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-value" id="statHomeless">84M+</span>
+                        <span class="stat-label">Households Impacted</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-grid container">
+                <!-- Main Analytics Controls -->
+                <div class="chart-controls fade-in">
+                    <div class="timeline-wrapper glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Historical Timeline</span>
+                            <span class="current-year-badge">Year: <span id="selectedYear">2024</span></span>
+                        </div>
+                        <input type="range" class="timeline-slider" id="yearSlider" min="2000" max="2024" value="2024">
+                        <div class="timeline-markers">
+                            <span>2000</span>
+                            <span>2005</span>
+                            <span>2010</span>
+                            <span>2015</span>
+                            <span>2020</span>
+                            <span>2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Insights Row -->
+                <div class="chart-row">
+                    <div class="chart-main glass-card fade-in">
+                        <div class="card-header">
+                            <h3><i data-lucide="droplet"></i> Rainfall Patterns</h3>
+                            <span class="insight-badge">75% floods after 1990</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="rainfallChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card glass-card fade-in" data-delay="100">
+                        <div class="chart-header">
+                            <h4><i data-lucide="alert-triangle"></i> Flood Events Timeline</h4>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="floodEventsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card glass-card fade-in" data-delay="200">
+                        <div class="chart-header">
+                            <h4><i data-lucide="waves"></i> River Basin Flood Impact</h4>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="riverImpactChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card glass-card fade-in" data-delay="300">
+                        <div class="chart-header">
+                            <h4><i data-lucide="pie-chart"></i> Causal Analysis</h4>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="causesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infographics -->
+                <div class="infographics-grid">
+                    <div class="infographic-card glass-card fade-in">
+                        <div class="infographic-icon"><i data-lucide="cloud-drizzle"></i></div>
+                        <div class="infographic-data">
+                            <span class="infographic-value" id="infoMonsoon">High</span>
+                            <span class="infographic-label">Monsoon Intensity</span>
+                        </div>
+                        <div class="infographic-bar">
+                            <div class="infographic-bar-fill" id="infoMonsoonBar" style="width:75%"></div>
+                        </div>
+                    </div>
+                    <div class="infographic-card glass-card fade-in" data-delay="100">
+                        <div class="infographic-icon"><i data-lucide="repeat"></i></div>
+                        <div class="infographic-data">
+                            <span class="infographic-value" id="infoFrequency">12 events</span>
+                            <span class="infographic-label">Flood Frequency</span>
+                        </div>
+                        <div class="infographic-bar">
+                            <div class="infographic-bar-fill" id="infoFrequencyBar" style="width:60%"></div>
+                        </div>
+                    </div>
+                    <div class="infographic-card glass-card fade-in" data-delay="200">
+                        <div class="infographic-icon"><i data-lucide="git-branch"></i></div>
+                        <div class="infographic-data">
+                            <span class="infographic-value" id="infoBasin">7 basins</span>
+                            <span class="infographic-label">River Basin Impact</span>
+                        </div>
+                        <div class="infographic-bar">
+                            <div class="infographic-bar-fill" id="infoBasinBar" style="width:55%"></div>
+                        </div>
+                    </div>
+                    <div class="infographic-card glass-card fade-in" data-delay="300">
+                        <div class="infographic-icon"><i data-lucide="users"></i></div>
+                        <div class="infographic-data">
+                            <span class="infographic-value" id="infoAffected">32M people</span>
+                            <span class="infographic-label">Affected Regions</span>
+                        </div>
+                        <div class="infographic-bar">
+                            <div class="infographic-bar-fill" id="infoAffectedBar" style="width:70%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i data-lucide="shield-alert"></i>
+                        <span>Flood<span class="logo-accent">Guard</span> India</span>
+                    </div>
+                    <p>Real-time flood intelligence platform for disaster preparedness and community resilience across
+                        India.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="flood-info.html">Flood Intelligence</a>
+                    <a href="historical.html">Historical Data</a>
+                    <a href="safety.html">Safety & Emergency</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://mausam.imd.gov.in/" target="_blank">IMD Weather</a>
+                    <a href="https://cwc.gov.in/" target="_blank">Central Water Commission</a>
+                    <a href="https://ndma.gov.in/" target="_blank">NDMA India</a>
+                    <a href="https://nrsc.gov.in/" target="_blank">NRSC</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Emergency</h4>
+                    <a href="tel:112">Emergency: 112</a>
+                    <a href="tel:1078">Disaster Mgmt: 1078</a>
+                    <a href="tel:01124363260">NDRF: 011-24363260</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FloodGuard India — Built for public safety and disaster awareness.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/map.js?v=20260307"></script>
+    <script src="js/charts.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Initialize Map
+            MapModule.init();
+
+            // Initialize Charts (lazy)
+            let chartsLoaded = false;
+            const chartsSection = document.getElementById('charts-section');
+            if (chartsSection) {
+                const chartObs = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !chartsLoaded) {
+                        chartsLoaded = true;
+                        ChartsModule.initAll();
+                        chartObs.unobserve(chartsSection);
+                    }
+                }, { threshold: 0.1 });
+                chartObs.observe(chartsSection);
+            }
+
+            // Timeline slider
+            const slider = document.getElementById('yearSlider');
+            const yearDisplay = document.getElementById('selectedYear');
+            if (slider) {
+                slider.addEventListener('input', () => {
+                    const year = parseInt(slider.value);
+                    if (yearDisplay) yearDisplay.textContent = year;
+                    if (chartsLoaded) ChartsModule.updateYear(year);
+                });
+            }
+
+            // Theme change — recreate charts
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    setTimeout(() => {
+                        if (chartsLoaded) ChartsModule.initAll();
+                    }, 100);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

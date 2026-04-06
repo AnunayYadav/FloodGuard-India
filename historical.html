@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Comprehensive timeline of major flood disasters in India — causes, impacts, and historical patterns from the deadliest flood events.">
+    <meta name="keywords" content="flood history India, flood disasters timeline, historical floods, flood events">
+    <meta name="author" content="FloodGuard India">
+    <title>Historical Flood Data — FloodGuard India</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/impact_chain.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- History Data -->
+    <script src="js/history_data.js"></script>
+</head>
+
+<body>
+    <!-- ═══════════════════ SCROLL PROGRESS ═══════════════════ -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <span class="logo-text">Flood<span class="logo-accent">Guard</span> India</span>
+            </a>
+
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="flood-info.html" class="nav-link">Flood Intelligence</a></li>
+                <li><a href="historical.html" class="nav-link active">Historical Data</a></li>
+                <li><a href="safety.html" class="nav-link">Safety & Emergency</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon-dark"></i>
+                    <i data-lucide="sun" class="theme-icon-light"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO: OVERVIEW & IMPACT ═══════════════════ -->
+    <section class="impact-stats-section">
+        <div class="container impact-stats-container">
+            <div class="hero-intro fade-in">
+                <div class="section-badge fade-in">National Analysis Overview</div>
+                <h1 class="fade-in">National Flood <span class="gradient-text-warm">Records & Analysis</span></h1>
+                <p class="fade-in">A data-driven geological and socio-economic study of flooding patterns in India from 1950 to 2025.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <!-- Stat Card: Total Events -->
+                <div class="stat-card fade-in" data-delay="0">
+                    <div class="stat-icon"><i data-lucide="skull"></i></div>
+                    <div class="stat-number">122K+</div>
+                    <div class="stat-label">Total Lives Lost</div>
+                    <div class="stat-footer">Recorded Since 1953</div>
+                </div>
+
+                <!-- Stat Card: People Affected -->
+                <div class="stat-card high fade-in" data-delay="100">
+                    <div class="stat-icon"><i data-lucide="alert-triangle"></i></div>
+                    <div class="stat-number">~20%</div>
+                    <div class="stat-label">Global Death Share</div>
+                    <div class="stat-footer">India's Contribution</div>
+                </div>
+
+                <!-- Stat Card: Economic Loss -->
+                <div class="stat-card critical fade-in" data-delay="200">
+                    <div class="stat-icon"><i data-lucide="indian-rupee"></i></div>
+                    <div class="stat-number">₹20K Cr+</div>
+                    <div class="stat-label">Avg. Annual Damage</div>
+                    <div class="stat-footer">Modern Resource Impact</div>
+                </div>
+
+                <!-- Stat Card: Crop Land -->
+                <div class="stat-card moderate fade-in" data-delay="300">
+                    <div class="stat-icon"><i data-lucide="sprout"></i></div>
+                    <div class="stat-number">3.7M ha</div>
+                    <div class="stat-label">Crop Area Affected</div>
+                    <div class="stat-footer">Avg. Yearly Impact</div>
+                </div>
+            </div>
+
+
+            <!-- Detailed Stats Grid (Secondary) -->
+            <div class="stats-detail-row fade-in" data-delay="400">
+                <div class="detail-stat">
+                    <span class="detail-label">Avg Annual Loss:</span>
+                    <span class="detail-value">$7.4 Billion/year</span>
+                </div>
+                <div class="detail-stat divider"></div>
+                <div class="detail-stat">
+                    <span class="detail-label">Global Death Share:</span>
+                    <span class="detail-value">India contributes ~20%</span>
+                </div>
+                <div class="detail-stat divider"></div>
+                <div class="detail-stat highlight">
+                    <span class="detail-label">Disaster Insight:</span>
+                    <span class="detail-value">Floods are India's biggest disasters</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ HISTORICAL TIMELINE ═══════════════════ -->
+    <section class="history-section" id="historical-data">
+        <div class="container">
+            <div class="history-header fade-in">
+                <div class="section-divider"></div>
+                <h2 class="section-title">Major <span class="gradient-text">Flood Disasters</span> in India</h2>
+                <p class="section-subtitle">A comprehensive chronological timeline of critical flood events, their causes, and socio-economic impacts across the nation.</p>
+
+                
+                <div class="history-insights-strip">
+                    <div class="insight-pill">
+                        <i data-lucide="trending-up"></i>
+                        <span><strong>75%</strong> of major floods occurred after 1990</span>
+                    </div>
+                    <div class="insight-pill">
+                        <i data-lucide="cloud-lightning"></i>
+                        <span><strong>3x</strong> increase in extreme rainfall events</span>
+                    </div>
+                    <div class="insight-pill">
+                        <i data-lucide="alert-circle"></i>
+                        <span><strong>19%</strong> of extreme floods cause <strong>56%</strong> of total deaths</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript will populate the timeline here -->
+            <div class="history-timeline-container" id="historyTimeline">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ IMPACT DEEP-DIVE ═══════════════════ -->
+    <section class="impact-deep-dive fade-in">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Socio-Economic Data</span>
+                <h2>Deep Dive: <span class="gradient-text">Flood Impacts</span></h2>
+                <p>Analyzing the long-term consequences of flooding on India's primary sectors, ecology, and urban
+                    stability.</p>
+            </div>
+
+            <div class="impact-main-grid">
+                <!-- 1. Agriculture & Livestock -->
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="sprout"></i>
+                        </div>
+                        <h3>Agriculture & Livestock</h3>
+                    </div>
+                    <div class="impact-table-wrapper">
+                        <table class="impact-table">
+                            <thead>
+                                <tr>
+                                    <th>Crop Type</th>
+                                    <th>Impact</th>
+                                    <th>Loss %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><div class="crop-cell"><span class="crop-icon">🌾</span> Rice</div></td>
+                                    <td><span class="impact-tag critical">Very High</span></td>
+                                    <td>30–80%</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="crop-cell"><span class="crop-icon">🥦</span> Vegetables</div></td>
+                                    <td><span class="impact-tag critical">Very High</span></td>
+                                    <td>40–90%</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="crop-cell"><span class="crop-icon">🌽</span> Maize</div></td>
+                                    <td><span class="impact-tag high">High</span></td>
+                                    <td>25–60%</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="crop-cell"><span class="crop-icon">🌿</span> Sugarcane</div></td>
+                                    <td><span class="impact-tag high">High</span></td>
+                                    <td>20–50%</td>
+                                </tr>
+                                <tr>
+                                    <td><div class="crop-cell"><span class="crop-icon">🥜</span> Pulses</div></td>
+                                    <td><span class="impact-tag moderate">Medium</span></td>
+                                    <td>15–35%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="card-note"><strong>Livestock Loss:</strong> 50,000–1,00,000+ deaths/year. Cattle, goats,
+                        and poultry losses equate to primary income loss for rural families.</p>
+                </div>
+
+                <!-- 2. Wildlife Impact (Kaziranga) -->
+                <div class="deep-dive-card feature-card">
+                    <div class="deep-dive-header">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="paw-print"></i>
+                        </div>
+                        <h3>Wildlife Impact (Kaziranga)</h3>
+                    </div>
+                    <div class="wildlife-summary">
+                        <div class="wildlife-stat">
+                            <span class="stat-num">70-90%</span>
+                            <span class="stat-text">Park Area Affected Yearly</span>
+                        </div>
+                        <p>Every monsoon, the Brahmaputra floods Kaziranga National Park. In extreme years, 200+ animals
+                            (Rhinos, Elephants, Deer) perish.</p>
+                        <ul class="behavior-list">
+                            <li><i data-lucide="trending-up"></i> Tigers move to higher villages (Conflict)</li>
+                            <li><i data-lucide="map-pinned"></i> Elephants migrate long distances</li>
+                            <li><i data-lucide="zap"></i> High deaths during highway crossings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Infrastructure & Health -->
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="activity"></i>
+                        </div>
+                        <h3>Infrastructure & Health</h3>
+                    </div>
+                    <div class="dual-sections">
+                        <div class="info-sub-section">
+                            <h4><i data-lucide="building-2"></i> Infrastructure Damage</h4>
+                            <ul class="check-list">
+                                <li>Bridge collapses & road washouts</li>
+                                <li>Communication line disruptions</li>
+                                <li>Embankment breaches in rural regions</li>
+                            </ul>
+                        </div>
+                        <div class="info-sub-section">
+                            <h4><i data-lucide="shield-plus"></i> Public Health Risk</h4>
+                            <p>Significant rise in waterborne diseases (Cholera, Typhoid, Leptospirosis) due to contaminated
+                                water sources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Flood Depth Impact Guide -->
+                <div class="deep-dive-card">
+                    <div class="deep-dive-header">
+                        <div class="card-icon-wrapper">
+                            <i data-lucide="waves"></i>
+                        </div>
+                        <h3>Flood Depth Impact Guide</h3>
+                    </div>
+                    <p>Standard safety risk levels based on water depth:</p>
+                        <div class="water-level-grid">
+                            <div class="depth-row extreme">
+                                <span class="depth-val">3.0m+</span>
+                                <span class="depth-info">Double story submerged. Total loss.</span>
+                            </div>
+                            <div class="depth-row critical">
+                                <span class="depth-val">1.5m</span>
+                                <span class="depth-info">Waist level. High danger for all.</span>
+                            </div>
+                            <div class="depth-row">
+                                <span class="depth-val">0.5m</span>
+                                <span class="depth-info">Knee level. Small cars trapped.</span>
+                            </div>
+                            <div class="depth-row">
+                                <span class="depth-val">0.1m</span>
+                                <span class="depth-info">Ankle level. Safe for most vehicles.</span>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <!-- Key Economic Findings Summary -->
+            <div class="economic-insight-summary">
+                <div class="econ-item"><i data-lucide="gem"></i> ₹20,000Cr+ avg. annual economic damage</div>
+                <div class="econ-item"><i data-lucide="land-plot"></i> 3.7M hectares crop area affected yearly</div>
+                <div class="econ-item"><i data-lucide="users"></i> Floods cause 56% of disaster mortality</div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════ IMPACT CHAIN VISUALIZER ═══════════════════ -->
+    <section class="impact-chain-section fade-in">
+        <div class="container">
+            <div class="visualizer-container">
+                <div class="visualizer-header">
+                    <div class="badge-accent">Dynamic Simulation</div>
+                    <h2>Flood Impact <span class="gradient-text">Chain Visualizer</span></h2>
+                    <p>“Flood is not a single event — it triggers a chain reaction that affects the entire society.”</p>
+                </div>
+
+                <div class="visualizer-layout">
+                    <!-- Controls Side Panel -->
+                    <aside class="visualizer-controls">
+                        <div class="control-group">
+                            <h4><i data-lucide="settings-2"></i> What If</h4>
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Rainfall Intensity</span>
+                                    <span id="rainVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Low</span>
+                                    <input type="range" class="impact-slider" id="rainSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Ext.</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Drainage Efficiency</span>
+                                    <span id="drainageVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Clogged</span>
+                                    <input type="range" class="impact-slider" id="drainageSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Max</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Forest Density</span>
+                                    <span id="treesVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">None</span>
+                                    <input type="range" class="impact-slider" id="treesSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Full</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Urbanization Level</span>
+                                    <span id="densityVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Rural</span>
+                                    <input type="range" class="impact-slider" id="densitySlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Urban</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Alert Systems</span>
+                                    <span id="warningVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Off</span>
+                                    <input type="range" class="impact-slider" id="warningSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Hi-Tech</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Defense Strength</span>
+                                    <span id="bankVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Weak</span>
+                                    <input type="range" class="impact-slider" id="bankSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Max</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Terrain Slope</span>
+                                    <span id="gradientVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Flat</span>
+                                    <input type="range" class="impact-slider" id="gradientSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Steep</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-container">
+                                <label class="slider-label">
+                                    <span>Community Readiness</span>
+                                    <span id="resilienceVal">50%</span>
+                                </label>
+                                <div class="slider-wrapper">
+                                    <span class="range-hint">Avg.</span>
+                                    <input type="range" class="impact-slider" id="resilienceSlider" min="0" max="100" value="50">
+                                    <span class="range-hint">Robust</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Display -->
+                    <div class="visualizer-display">
+                        <div class="chain-flow">
+                            <div class="chain-node" data-node-id="trigger">
+                                <span class="node-icon">🌧️</span>
+                                <span class="node-label">Trigger</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                            <div class="chain-arrow"><i data-lucide="chevron-right"></i></div>
+                            <div class="chain-node active" data-node-id="flood">
+                                <span class="node-icon">🌊</span>
+                                <span class="node-label">Flood Event</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                            <div class="chain-arrow"><i data-lucide="chevron-right"></i></div>
+                            <div class="chain-node" data-node-id="damage">
+                                <span class="node-icon">🌾</span>
+                                <span class="node-label">Primary Damage</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                            <div class="chain-arrow"><i data-lucide="chevron-right"></i></div>
+                            <div class="chain-node" data-node-id="economy">
+                                <span class="node-icon">💰</span>
+                                <span class="node-label">Economic Shock</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                            <div class="chain-arrow"><i data-lucide="chevron-right"></i></div>
+                            <div class="chain-node" data-node-id="social">
+                                <span class="node-icon">🚶</span>
+                                <span class="node-label">Social Impact</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                            <div class="chain-arrow"><i data-lucide="chevron-right"></i></div>
+                            <div class="chain-node" data-node-id="poverty">
+                                <span class="node-icon">📉</span>
+                                <span class="node-label">Long-Term Impact</span>
+                                <div class="node-severity"><div class="severity-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <!-- Info Panel -->
+                        <div class="node-context-panel" id="nodeContextPanel">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ SAFETY CTA ═══════════════════ -->
+    <section class="safety-cta fade-in">
+        <div class="container">
+            <div class="safety-cta-card glass-card">
+                <div class="cta-content">
+                    <div class="cta-badge">Immediate Action</div>
+                    <h2>Stay Prepared, <span class="gradient-text-warm">Stay Safe</span></h2>
+                    <p>Don't just look at the past. Learn how to protect yourself and your community from future flood disasters.</p>
+                    <div class="cta-actions">
+                        <a href="safety.html" class="btn btn-primary">
+                            <i data-lucide="shield-check"></i>
+                            <span>View Safety Guide</span>
+                        </a>
+                        <a href="safety.html#emergency-contacts" class="btn btn-secondary">
+                            <i data-lucide="phone"></i>
+                            <span>Emergency Contacts</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-visual">
+                    <i data-lucide="shield-alert" class="floating-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i data-lucide="shield-alert"></i>
+                        <span>Flood<span class="logo-accent">Guard</span> India</span>
+                    </div>
+                    <p>Real-time flood intelligence platform for disaster preparedness and community resilience across
+                        India.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="flood-info.html">Flood Intelligence</a>
+                    <a href="historical.html">Historical Data</a>
+                    <a href="safety.html">Safety & Emergency</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://mausam.imd.gov.in/" target="_blank">IMD Weather</a>
+                    <a href="https://cwc.gov.in/" target="_blank">Central Water Commission</a>
+                    <a href="https://ndma.gov.in/" target="_blank">NDMA India</a>
+                    <a href="https://nrsc.gov.in/" target="_blank">NRSC</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Emergency</h4>
+                    <a href="tel:112">Emergency: 112</a>
+                    <a href="tel:1078">Disaster Mgmt: 1078</a>
+                    <a href="tel:01124363260">NDRF: 011-24363260</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FloodGuard India — Built for public safety and disaster awareness.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/ui_components.js"></script>
+    <script src="js/impact_chain.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Initialize history timeline
+            if (typeof UIModule !== 'undefined') {
+                UIModule.init();
+            }
+        });
+    </script>
+</body>
+
+</html>

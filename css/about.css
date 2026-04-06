@@ -1,0 +1,126 @@
+/* ═══════════════════════════════════════════════════════════
+   About — Premium Mission Cards
+   ═══════════════════════════════════════════════════════════ */
+
+.about-section {
+    background: var(--bg-primary);
+    position: relative;
+}
+
+/* Decorative background */
+.about-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 50%;
+    background: radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.04), transparent 60%);
+    pointer-events: none;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.about-card {
+    padding: var(--space-2xl);
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle top accent */
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.about-card:hover::before {
+    opacity: 1;
+}
+
+.about-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-blue);
+}
+
+.about-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(167, 139, 250, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    margin-bottom: var(--space-lg);
+    transition: all var(--transition-spring);
+}
+
+.about-card:hover .about-icon {
+    background: var(--gradient-primary);
+    color: #fff;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+}
+
+.about-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.about-card h3 {
+    font-size: 1.3rem;
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.02em;
+}
+
+.about-card p {
+    color: var(--text-secondary);
+    font-size: 0.93rem;
+    line-height: 1.8;
+}
+
+.about-sources {
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-sources li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+.about-sources li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}

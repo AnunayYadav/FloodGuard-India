@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FloodGuard India — Real-time flood intelligence platform for India. Track rainfall, river flows, and flood risk zones with live environmental data.">
+    <meta name="keywords" content="flood, India, disaster management, flood risk, weather, rainfall, river monitoring">
+    <meta name="author" content="FloodGuard India">
+    <title>FloodGuard India — Flood Awareness Information System</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/info_section.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <!-- ═══════════════════ SCROLL PROGRESS ═══════════════════ -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <span class="logo-text">Flood<span class="logo-accent">Guard</span> India</span>
+            </a>
+
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="flood-info.html" class="nav-link">Flood Intelligence</a></li>
+                <li><a href="historical.html" class="nav-link">Historical Data</a></li>
+                <li><a href="safety.html" class="nav-link">Safety & Emergency</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon-dark"></i>
+                    <i data-lucide="sun" class="theme-icon-light"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
+    <section class="hero-section" id="home">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+            <div class="hero-mesh-gradient"></div>
+            <div class="hero-grid"></div>
+            <canvas id="waveCanvas" class="hero-wave-canvas"></canvas>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">
+                India's <span class="gradient-text">Flood Intelligence</span><br>Platform
+            </h1>
+            <p class="hero-subtitle fade-in">
+                Monitor rainfall patterns, track river flows, and assess flood risk zones
+                with live environmental data — helping communities prepare, respond, and recover.
+            </p>
+            <div class="hero-buttons fade-in">
+                <a href="flood-info.html" class="btn btn-primary">
+                    <i data-lucide="map"></i>
+                    <span>Explore Live Map</span>
+                </a>
+                <a href="safety.html" class="btn btn-secondary">
+                    <i data-lucide="shield-check"></i>
+                    <span>Safety Protocol</span>
+                </a>
+            </div>
+
+            <!-- Live Ticker -->
+            <div class="hero-ticker fade-in">
+                <div class="ticker-dot"></div>
+                <span id="heroTicker">Fetching latest weather data...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ INFO SECTION ═══════════════════ -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-header fade-in">
+                <div class="hero-badge" style="margin-bottom: 1rem; letter-spacing: 2px;">Context & Understanding</div>
+                <h2>The Indian Flood Crisis</h2>
+                <p>India is one of the most flood-prone regions in the world. Over 40 million hectares — roughly 12% of the national territory — is considered high-risk. We track the three distinct types of flood hazards that threaten the nation.</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card fade-in" data-delay="100">
+                    <i data-lucide="building-2"></i>
+                    <h3>Urban Flooding</h3>
+                    <p>Caused by rapid urbanization and inadequate drainage systems, leading to extreme waterlogging in cities like Mumbai, Chennai, and Delhi.</p>
+                    <a href="flood-info.html" class="card-link">Learn More <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="info-card fade-in" data-delay="200">
+                    <i data-lucide="waves"></i>
+                    <h3>Fluvial Flooding</h3>
+                    <p>Occurs when river basins overflow due to prolonged monsoon activity, affecting millions in the Indo-Gangetic and Brahmaputra plains.</p>
+                    <a href="flood-info.html" class="card-link">Learn More <i data-lucide="arrow-right"></i></a>
+                </div>
+                <div class="info-card fade-in" data-delay="300">
+                    <i data-lucide="zap"></i>
+                    <h3>Flash Floods</h3>
+                    <p>Sudden surges triggered by cloudbursts or glacial breaches (GLOF events), common in the high-altitude regions of Uttrakhand and Sikkim.</p>
+                    <a href="flood-info.html" class="card-link">Learn More <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Detailed Impact Stats Overlay -->
+            <div class="impact-fact-sheet glass-card fade-in">
+                <div class="fact-header">
+                    <div class="hero-badge">CWC Dataset Update: 2024</div>
+                    <h2>The Magnitude of <span class="gradient-text-warm">Impact</span></h2>
+                    <p>According to the Central Water Commission (CWC), the annual average impact of floods in India is staggering.</p>
+                </div>
+                <div class="fact-grid">
+                    <div class="fact-item">
+                        <span class="fact-number">33M+</span>
+                        <span class="fact-label">Population Affected Annually</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">7.2M</span>
+                        <span class="fact-label">Hectares Affected Annually</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">₹1,500Cr+</span>
+                        <span class="fact-label">Avg. Annual Crop Damage</span>
+                    </div>
+                    <div class="fact-item">
+                        <span class="fact-number">122,866</span>
+                        <span class="fact-label">Lives Lost (1953-2024)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-box fade-in">
+                <div class="insight-content">
+                    <div class="hero-badge" style="margin-bottom: 1rem; letter-spacing: 2px;">Our Mission</div>
+                    <h2>Bridging Data and Safety</h2>
+                    <p>FloodGuard India isn't just a dashboard; it's a diagnostic response ecosystem. By translating complex hydrological sensors into actionable alerts, we empower communities to prepare, respond, and recover effectively.</p>
+                    <div class="insight-meta">
+                        <div class="meta-item">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>Real-time Satellite Rainfall Tracking</span>
+                        </div>
+                        <div class="meta-item">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>District-level Risk Classification</span>
+                        </div>
+                        <div class="meta-item">
+                            <i data-lucide="check-circle-2"></i>
+                            <span>Direct Emergency Response Integration</span>
+                        </div>
+                    </div>
+                    <a href="about.html" class="btn btn-secondary" style="margin-top: var(--space-xl)">Meet the Team</a>
+                </div>
+                <div class="insight-image">
+                    <img src="assets/flood_monitoring.png" alt="Futuristic Monitoring Concept Painting">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ STATS SECTION ═══════════════════ -->
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-icon"><i data-lucide="map"></i></div>
+                    <div class="stat-number" data-target="28">0</div>
+                    <div class="stat-label">States Monitored</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="100">
+                    <div class="stat-icon"><i data-lucide="grid-3x3"></i></div>
+                    <div class="stat-number" data-target="766">0</div>
+                    <div class="stat-label">Districts Mapped</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="200">
+                    <div class="stat-icon"><i data-lucide="waves"></i></div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Major Rivers Tracked</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="300">
+                    <div class="stat-icon"><i data-lucide="radio-tower"></i></div>
+                    <div class="stat-number" data-target="1500">0</div>
+                    <div class="stat-label">Warning Centers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i data-lucide="shield-alert"></i>
+                        <span>Flood<span class="logo-accent">Guard</span> India</span>
+                    </div>
+                    <p>Real-time flood intelligence platform for disaster preparedness and community resilience across
+                        India.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="flood-info.html">Flood Intelligence</a>
+                    <a href="historical.html">Historical Data</a>
+                    <a href="safety.html">Safety & Emergency</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://mausam.imd.gov.in/" target="_blank">IMD Weather</a>
+                    <a href="https://cwc.gov.in/" target="_blank">Central Water Commission</a>
+                    <a href="https://ndma.gov.in/" target="_blank">NDMA India</a>
+                    <a href="https://nrsc.gov.in/" target="_blank">NRSC</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Emergency</h4>
+                    <a href="tel:112">Emergency: 112</a>
+                    <a href="tel:1078">Disaster Mgmt: 1078</a>
+                    <a href="tel:01124363260">NDRF: 011-24363260</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FloodGuard India — Built for public safety and disaster awareness.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/weather.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

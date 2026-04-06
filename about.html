@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="About FloodGuard India — Our mission, data sources, and the role of flood awareness in disaster preparedness. Empowering communities with data-driven intelligence.">
+    <meta name="keywords" content="FloodGuard India, flood awareness, disaster preparedness, about, mission">
+    <meta name="author" content="FloodGuard India">
+    <title>About — FloodGuard India</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* Page Hero — Emerald/teal accent for growth & sustainability */
+        .page-hero {
+            padding: calc(var(--navbar-height) + var(--space-3xl)) 0 var(--space-3xl);
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(52, 211, 153, 0.08) 0%, transparent 55%);
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--bg-primary), transparent);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .page-hero .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-emerald);
+            font-size: 0.82rem;
+            font-weight: 700;
+            font-family: var(--font-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-lg);
+        }
+
+        .page-hero .hero-badge i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-md);
+            line-height: 1.1;
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        .gradient-text-aurora {
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mission statement large quote */
+        .mission-quote {
+            max-width: 800px;
+            margin: var(--space-3xl) auto;
+            text-align: center;
+            padding: var(--space-2xl);
+        }
+
+        .mission-quote blockquote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .mission-quote blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            font-size: 5rem;
+            font-family: serif;
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.4;
+            line-height: 1;
+        }
+
+        .mission-quote cite {
+            display: block;
+            margin-top: var(--space-lg);
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: normal;
+            font-family: var(--font-accent);
+            letter-spacing: 0.03em;
+        }
+
+        /* Technology stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-2xl);
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            background: rgba(52, 211, 153, 0.03);
+            border: 1px solid var(--glass-border);
+            transition: all var(--transition-base);
+        }
+
+        .tech-item:hover {
+            border-color: rgba(52, 211, 153, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 211, 153, 0.08);
+        }
+
+        .tech-item i {
+            width: 28px;
+            height: 28px;
+            color: var(--accent-emerald);
+            margin-bottom: var(--space-sm);
+        }
+
+        .tech-item span {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: var(--font-accent);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ═══════════════════ SCROLL PROGRESS ═══════════════════ -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <span class="logo-text">Flood<span class="logo-accent">Guard</span> India</span>
+            </a>
+
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="flood-info.html" class="nav-link">Flood Intelligence</a></li>
+                <li><a href="historical.html" class="nav-link">Historical Data</a></li>
+                <li><a href="safety.html" class="nav-link">Safety & Emergency</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+            </ul>
+
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="theme-icon-dark"></i>
+                    <i data-lucide="sun" class="theme-icon-light"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ PAGE HERO ═══════════════════ -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <div class="hero-badge fade-in">
+                <i data-lucide="heart-handshake"></i>
+                <span>Our Mission</span>
+            </div>
+            <h1 class="fade-in">About <span class="gradient-text-aurora">FloodGuard India</span></h1>
+            <p class="fade-in">Empowering communities with data-driven disaster preparedness and real-time flood
+                intelligence.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ MISSION QUOTE ═══════════════════ -->
+    <div class="mission-quote fade-in">
+        <blockquote>
+            Every life lost to floods is a failure of information, not nature. We exist to bridge that gap — turning raw environmental data into actionable community intelligence.
+        </blockquote>
+        <cite>— FloodGuard India Vision</cite>
+    </div>
+
+    <!-- ═══════════════════ ABOUT SECTION ═══════════════════ -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-card glass-card fade-in">
+                    <div class="about-icon"><i data-lucide="target"></i></div>
+                    <h3>Why Flood Awareness?</h3>
+                    <p>India faces devastating floods annually, affecting over 40 million people on average. With
+                        climate change intensifying monsoon patterns, real-time flood intelligence is no longer optional
+                        — it's a necessity. Our platform bridges the gap between raw environmental data and actionable
+                        community insights, helping save lives and reduce economic losses that exceed ₹50,000 crore
+                        annually.</p>
+                </div>
+
+                <div class="about-card glass-card fade-in" data-delay="100">
+                    <div class="about-icon"><i data-lucide="database"></i></div>
+                    <h3>How Data Helps</h3>
+                    <p>By aggregating weather data, river gauge measurements, satellite imagery, and historical flood
+                        records, we create comprehensive flood risk assessments. Machine learning models analyze
+                        patterns across decades of data to improve prediction accuracy. Early warning systems powered by
+                        this data have been shown to reduce flood casualties by up to 50% when communities are prepared.
+                    </p>
+                </div>
+
+                <div class="about-card glass-card fade-in" data-delay="200">
+                    <div class="about-icon"><i data-lucide="globe"></i></div>
+                    <h3>Data Sources</h3>
+                    <p>FloodGuard India integrates data from multiple authoritative sources:</p>
+                    <ul class="about-sources">
+                        <li>Open-Meteo API — Real-time weather forecasts</li>
+                        <li>India Meteorological Department (IMD)</li>
+                        <li>Central Water Commission (CWC)</li>
+                        <li>National Remote Sensing Centre (NRSC)</li>
+                        <li>OpenStreetMap — Geographic mapping data</li>
+                        <li>India Flood Inventory (IFI) — Historical records</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="section-header fade-in" style="margin-top: var(--space-4xl);">
+                <div class="section-divider"></div>
+                <h2 class="section-title">Powered By</h2>
+            </div>
+            <div class="tech-grid fade-in">
+                <div class="tech-item">
+                    <i data-lucide="map"></i>
+                    <span>Leaflet.js</span>
+                </div>
+                <div class="tech-item">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Chart.js</span>
+                </div>
+                <div class="tech-item">
+                    <i data-lucide="cloud"></i>
+                    <span>Open-Meteo</span>
+                </div>
+                <div class="tech-item">
+                    <i data-lucide="palette"></i>
+                    <span>Lucide Icons</span>
+                </div>
+                <div class="tech-item">
+                    <i data-lucide="globe-2"></i>
+                    <span>GeoJSON</span>
+                </div>
+                <div class="tech-item">
+                    <i data-lucide="code-2"></i>
+                    <span>Vanilla JS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ IMPACT STATS ═══════════════════ -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-icon"><i data-lucide="map"></i></div>
+                    <div class="stat-number" data-target="28">0</div>
+                    <div class="stat-label">States Monitored</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="100">
+                    <div class="stat-icon"><i data-lucide="grid-3x3"></i></div>
+                    <div class="stat-number" data-target="766">0</div>
+                    <div class="stat-label">Districts Mapped</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="200">
+                    <div class="stat-icon"><i data-lucide="waves"></i></div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Major Rivers Tracked</div>
+                </div>
+                <div class="stat-card fade-in" data-delay="300">
+                    <div class="stat-icon"><i data-lucide="database"></i></div>
+                    <div class="stat-number" data-target="6">0</div>
+                    <div class="stat-label">Data Sources</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i data-lucide="shield-alert"></i>
+                        <span>Flood<span class="logo-accent">Guard</span> India</span>
+                    </div>
+                    <p>Real-time flood intelligence platform for disaster preparedness and community resilience across
+                        India.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <a href="index.html">Home</a>
+                    <a href="flood-info.html">Flood Intelligence</a>
+                    <a href="historical.html">Historical Data</a>
+                    <a href="safety.html">Safety & Emergency</a>
+                    <a href="about.html">About</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="https://mausam.imd.gov.in/" target="_blank">IMD Weather</a>
+                    <a href="https://cwc.gov.in/" target="_blank">Central Water Commission</a>
+                    <a href="https://ndma.gov.in/" target="_blank">NDMA India</a>
+                    <a href="https://nrsc.gov.in/" target="_blank">NRSC</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Emergency</h4>
+                    <a href="tel:112">Emergency: 112</a>
+                    <a href="tel:1078">Disaster Mgmt: 1078</a>
+                    <a href="tel:01124363260">NDRF: 011-24363260</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FloodGuard India — Built for public safety and disaster awareness.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script src="js/theme.js"></script>
+    <script src="js/animations.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
